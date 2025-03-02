@@ -1,0 +1,60 @@
+services:
+  # Frontend Web Service
+  - type: web
+    name: ai-help-center-frontend
+    env: static
+    buildCommand: npm install && npm run build
+    staticPublishPath: ./dist
+    envVars:
+      - key: VITE_API_URL
+        value: https://ai-help-center-api.onrender.com
+      - key: VITE_AI_MODEL
+        value: mistral
+      - key: NODE_VERSION
+        value: 18.17.0
+
+  # Backend API Service
+  - type: web
+    name: ai-help-center-api
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.0
+      - key: MONGODB_URL
+        sync: false
+      - key: MONGODB_DB_NAME
+        value: ai_assistance
+      - key: SECRET_KEY
+        generateValue: true
+      - key: ALGORITHM
+        value: HS256
+      - key: ACCESS_TOKEN_EXPIRE_MINUTES
+        value: "30"
+      - key: REFRESH_TOKEN_EXPIRE_DAYS
+        value: "7"
+      - key: OLLAMA_BASE_URL
+        value: https://your-ollama-service.onrender.com
+      - key: OLLAMA_MODEL
+        value: mistral
+      - key: OLLAMA_TIMEOUT
+        value: "60"
+      - key: CORS_ORIGINS
+        value: '["https://ai-help-center.onrender.com"]'
+      - key: RATE_LIMIT_REQUESTS
+        value: "100"
+      - key: RATE_LIMIT_PERIOD
+        value: "60"
+
+  # Ollama Service
+  - type: web
+    name: ai-help-center-ollama
+    env: docker
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    envVars:
+      - key: OLLAMA_ORIGINS
+        value: https://ai-help-center-api.onrender.com
+      - key: OLLAMA_HOST
+        value: 0.0.0.0 

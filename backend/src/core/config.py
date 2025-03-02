@@ -15,7 +15,7 @@ class Settings(BaseSettings):
     PROJECT_NAME: str = "AI Assistant API"
 
     # MongoDB settings
-    MONGODB_URL: str = "mongodb://localhost:27017"
+    MONGODB_URL: str = "mongodb+srv://palvaiajay4730:Ajay18239@cluster1.xt0ps.mongodb.net/?retryWrites=true&w=majority&appName=Cluster1"
     MONGODB_DB_NAME: str = "ai_assistance"
 
     # JWT settings
@@ -42,7 +42,7 @@ class Settings(BaseSettings):
     SESSION_TTL: int = 86400
 
     # Frontend settings (VITE)
-    VITE_MONGODB_URI: str = "mongodb://localhost:27017"
+    VITE_MONGODB_URI: str = "mongodb+srv://palvaiajay4730:Ajay18239@cluster1.xt0ps.mongodb.net/?retryWrites=true&w=majority&appName=Cluster1"
     VITE_DB_NAME: str = "ai_assistance"
     VITE_JWT_SECRET: str = "ai_assistance_secret_key_2024"
     VITE_API_URL: str = "http://localhost:8000"

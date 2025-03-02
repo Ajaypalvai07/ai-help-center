@@ -1,16 +1,14 @@
-FROM node:20-alpine as builder
+FROM ollama/ollama:latest
 
-WORKDIR /app
-COPY package*.json ./
-RUN npm ci
-COPY . .
-RUN npm run build
+# Set environment variables
+ENV OLLAMA_ORIGINS=${OLLAMA_ORIGINS}
+ENV OLLAMA_HOST=${OLLAMA_HOST}
 
-FROM node:20-alpine
-WORKDIR /app
-COPY --from=builder /app/dist ./dist
-COPY --from=builder /app/package*.json ./
-RUN npm ci --production
+# Expose the Ollama API port
+EXPOSE 11434
 
-EXPOSE 3000
-CMD ["npm", "run", "preview"]
+# Download the Mistral model during build
+RUN ollama pull mistral
+
+# Start Ollama
+CMD ["ollama", "serve"]
