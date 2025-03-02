@@ -5,12 +5,12 @@ services:
     env: python
     plan: free
     buildCommand: pip install -r backend/requirements.txt
-    startCommand: uvicorn backend.src.main:app --host 0.0.0.0 --port $PORT
+    startCommand: cd backend && gunicorn wsgi:application --worker-class uvicorn.workers.UvicornWorker --bind 0.0.0.0:$PORT
     envVars:
       - key: PYTHON_VERSION
         value: 3.11.0
       - key: PYTHONPATH
-        value: .
+        value: backend
       - key: MONGODB_URL
         sync: false
       - key: MONGODB_DB_NAME
