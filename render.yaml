@@ -4,13 +4,13 @@ services:
     name: ai-help-center-api
     env: python
     plan: free
-    buildCommand: cd backend && pip install -r requirements.txt
-    startCommand: cd backend && PYTHONPATH=. gunicorn --workers 4 --worker-class uvicorn.workers.UvicornWorker --bind 0.0.0.0:$PORT "src.main:app"
+    buildCommand: pip install -r backend/requirements.txt
+    startCommand: uvicorn backend.src.main:app --host 0.0.0.0 --port $PORT
     envVars:
       - key: PYTHON_VERSION
         value: 3.11.0
       - key: PYTHONPATH
-        value: backend
+        value: .
       - key: MONGODB_URL
         sync: false
       - key: MONGODB_DB_NAME
