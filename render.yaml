@@ -1,8 +1,7 @@
 services:
   # Frontend Web Service
-  - type: web
+  - type: static
     name: ai-help-center-frontend
-    env: static
     buildCommand: npm install && npm run build
     staticPublishPath: ./dist
     envVars:
@@ -17,6 +16,7 @@ services:
   - type: web
     name: ai-help-center-api
     env: python
+    plan: free
     buildCommand: pip install -r requirements.txt
     startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
     envVars:
@@ -35,7 +35,7 @@ services:
       - key: REFRESH_TOKEN_EXPIRE_DAYS
         value: "7"
       - key: CORS_ORIGINS
-        value: '["https://ai-help-center.onrender.com"]'
+        value: '["https://ai-help-center-frontend.onrender.com"]'
       - key: RATE_LIMIT_REQUESTS
         value: "100"
       - key: RATE_LIMIT_PERIOD
