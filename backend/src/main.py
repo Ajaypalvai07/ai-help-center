@@ -1,8 +1,8 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from src.core.config import settings
-from src.core.database import init_db, close_db
-from src.routers import chat, admin, categories, auth, feedback, multimedia
+from core.config import settings
+from core.database import init_db, close_db
+from routers import chat, admin, categories, auth, feedback, multimedia
 import logging
 
 logging.basicConfig(level=logging.INFO)
