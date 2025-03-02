@@ -1,7 +1,8 @@
 services:
   # Frontend Web Service
-  - type: static
+  - type: web
     name: ai-help-center-frontend
+    env: static
     buildCommand: npm install && npm run build
     staticPublishPath: ./dist
     envVars:
