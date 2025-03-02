@@ -1,0 +1,12 @@
+backend/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.env
+.env.*
+!.env.example
+requirements.txt 
