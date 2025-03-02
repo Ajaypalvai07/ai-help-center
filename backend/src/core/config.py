@@ -19,18 +19,13 @@ class Settings(BaseSettings):
     MONGODB_DB_NAME: str = "ai_assistance"
 
     # JWT settings
-    SECRET_KEY: str = "ai_assistance_secret_key_2024"
+    SECRET_KEY: str = "your_secret_key_here"
     ALGORITHM: str = "HS256"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 30
     REFRESH_TOKEN_EXPIRE_DAYS: int = 7
 
-    # Ollama Configuration
-    OLLAMA_BASE_URL: str = "http://localhost:11434"
-    OLLAMA_MODEL: str = "mistral"
-    OLLAMA_TIMEOUT: int = 60
-
     # Security settings
-    ENCRYPTION_KEY: str = "ai_assistance_encryption_key_2024"
+    ENCRYPTION_KEY: str = "your_encryption_key_here"
     CORS_ORIGINS: str = Field('["http://localhost:3000"]', description="JSON array of allowed origins")
     RATE_LIMIT_REQUESTS: int = 100
     RATE_LIMIT_PERIOD: int = 60
@@ -42,11 +37,11 @@ class Settings(BaseSettings):
     SESSION_TTL: int = 86400
 
     # Frontend settings (VITE)
-    VITE_MONGODB_URI: str = "mongodb+srv://palvaiajay4730:Ajay18239@cluster1.xt0ps.mongodb.net/?retryWrites=true&w=majority&appName=Cluster1"
+    VITE_MONGODB_URI: str = "mongodb://localhost:27017"
     VITE_DB_NAME: str = "ai_assistance"
-    VITE_JWT_SECRET: str = "ai_assistance_secret_key_2024"
+    VITE_JWT_SECRET: str = "your_jwt_secret_here"
     VITE_API_URL: str = "http://localhost:8000"
-    VITE_AI_MODEL: str = "mistral"
+    VITE_AI_MODEL: str = "gpt-3.5-turbo"
 
     # Redis settings (optional)
     REDIS_HOST: Optional[str] = "localhost"
@@ -112,8 +107,6 @@ class Settings(BaseSettings):
         logger.info(f"- Project Name: {self.PROJECT_NAME}")
         logger.info(f"- API Version: {self.API_V1_STR}")
         logger.info(f"- MongoDB URL: {self.MONGODB_URL}")
-        logger.info(f"- Ollama Model: {self.OLLAMA_MODEL}")
-        logger.info(f"- Ollama URL: {self.OLLAMA_BASE_URL}")
         logger.info(f"- CORS Origins: {self.get_cors_origins()}")
 
 # Initialize settings

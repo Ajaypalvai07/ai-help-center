@@ -9,7 +9,7 @@ services:
       - key: VITE_API_URL
         value: https://ai-help-center-api.onrender.com
       - key: VITE_AI_MODEL
-        value: mistral
+        value: gpt-3.5-turbo
       - key: NODE_VERSION
         value: 18.17.0
 
@@ -34,27 +34,9 @@ services:
         value: "30"
       - key: REFRESH_TOKEN_EXPIRE_DAYS
         value: "7"
-      - key: OLLAMA_BASE_URL
-        value: https://your-ollama-service.onrender.com
-      - key: OLLAMA_MODEL
-        value: mistral
-      - key: OLLAMA_TIMEOUT
-        value: "60"
       - key: CORS_ORIGINS
         value: '["https://ai-help-center.onrender.com"]'
       - key: RATE_LIMIT_REQUESTS
         value: "100"
       - key: RATE_LIMIT_PERIOD
-        value: "60"
-
-  # Ollama Service
-  - type: web
-    name: ai-help-center-ollama
-    env: docker
-    dockerfilePath: ./Dockerfile
-    dockerContext: .
-    envVars:
-      - key: OLLAMA_ORIGINS
-        value: https://ai-help-center-api.onrender.com
-      - key: OLLAMA_HOST
-        value: 0.0.0.0 
+        value: "60" 
