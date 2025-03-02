@@ -26,7 +26,7 @@ class Settings(BaseSettings):
 
     # Security settings
     ENCRYPTION_KEY: str = "your_encryption_key_here"
-    CORS_ORIGINS: str = Field('["http://localhost:3000"]', description="JSON array of allowed origins")
+    CORS_ORIGINS: str = Field('["http://localhost:3000", "https://ai-help-center.vercel.app"]', description="JSON array of allowed origins")
     RATE_LIMIT_REQUESTS: int = 100
     RATE_LIMIT_PERIOD: int = 60
     MAX_CONCURRENT_REQUESTS: int = 1000
