@@ -1,14 +1,9 @@
 services:
   # Frontend Web Service
-  - type: web
+  - type: static
     name: ai-help-center-frontend
-    env: static
     buildCommand: npm install && npm run build
-    staticPublishPath: dist
-    routes:
-      - type: rewrite
-        source: /*
-        destination: /index.html
+    publishPath: dist
     envVars:
       - key: VITE_API_URL
         value: https://ai-help-center-api.onrender.com
@@ -22,9 +17,8 @@ services:
     name: ai-help-center-api
     env: python
     plan: free
-    region: oregon
-    buildCommand: cd backend && pip install -r requirements.txt
-    startCommand: cd backend && python -m uvicorn main:app --host 0.0.0.0 --port $PORT
+    buildCommand: pip install -r backend/requirements.txt
+    startCommand: uvicorn backend.main:app --host 0.0.0.0 --port $PORT
     envVars:
       - key: PYTHON_VERSION
         value: 3.11.0
