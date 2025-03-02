@@ -1,17 +1,4 @@
 services:
-  # Frontend Web Service
-  - type: static
-    name: ai-help-center-frontend
-    buildCommand: npm install && npm run build
-    publishPath: dist
-    envVars:
-      - key: VITE_API_URL
-        value: https://ai-help-center-api.onrender.com
-      - key: VITE_AI_MODEL
-        value: gpt-3.5-turbo
-      - key: NODE_VERSION
-        value: 18.17.0
-
   # Backend API Service
   - type: web
     name: ai-help-center-api
@@ -35,7 +22,7 @@ services:
       - key: REFRESH_TOKEN_EXPIRE_DAYS
         value: "7"
       - key: CORS_ORIGINS
-        value: '["https://ai-help-center-frontend.onrender.com"]'
+        value: '["https://ai-help-center.vercel.app"]'
       - key: RATE_LIMIT_REQUESTS
         value: "100"
       - key: RATE_LIMIT_PERIOD
